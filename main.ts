@@ -127,6 +127,82 @@ function drawTetromino() {
     }
 }
 
+// ゲームオーバー画面の表示
+function showGameOver() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#FFFFFF";
+    ctx.font = "36px Arial";
+    ctx.fillText("Game Over", canvas.width / 2 + 50 , canvas.height / 2 - 50);
+
+    ctx.font = "24px Arial";
+    ctx.fillText("Score: " + score, canvas.width / 2 - 20, canvas.height / 2 + 20);
+}
+
+// ゲームオーバー条件のチェック
+function checkGameOver() {
+    for (let col = 0; col < boardWidth; col++) {
+        if (board[0][col] !== 0) {
+            gameOver = true;
+            showGameOver();
+            return;
+        }
+    }
+}
+
+
+// テトロミノの回転
+function rotateTetromino() {
+    const newTetromino: number[][] = [];
+    const tetrominoSize = currentTetromino.length;
+
+    for (let row = 0; row < tetrominoSize; row++) {
+        newTetromino.push([]);
+        for (let col = 0; col < tetrominoSize; col++) {
+            newTetromino[row][col] = currentTetromino[tetrominoSize - col - 1][row];
+        }
+    }
+
+    // 回転前に回転可能かどうかをチェック
+    if (canRotate(newTetromino, currentRow, currentCol)) {
+        currentTetromino = newTetromino;
+    }
+}
+
+// テトロミノの回転可能かどうかをチェック
+function canRotate(tetromino: number[][], row: number, col: number) {
+    for (let r = 0; r < tetromino.length; r++) {
+        for (let c = 0; c < tetromino[r].length; c++) {
+            if (tetromino[r][c]) {
+                const boardRow = row + r;
+                const boardCol = col + c;
+
+                // ボードの境界外または他のブロックと衝突する場合は回転不可
+                if (
+                    boardRow < 0 ||
+                    boardRow >= boardHeight ||
+                    boardCol < 0 ||
+                    boardCol >= boardWidth ||
+                    board[boardRow] &&
+                    (board[boardRow][boardCol] !== 0)
+                ) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+// スコアの表示
+function drawScore() {
+    ctx.fillStyle = "#000";
+    ctx.font = "24px Arial";
+    ctx.textAlign = "right"; // 右寄せに設定
+    ctx.fillText("Score: " + score, canvasWidth - 20, 30);
+}
+
 
 // ゲームのループ
 let lastTime = 0;
