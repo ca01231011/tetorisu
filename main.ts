@@ -203,6 +203,76 @@ function drawScore() {
     ctx.fillText("Score: " + score, canvasWidth - 20, 30);
 }
 
+// テトロミノの移動
+function moveTetromino(dx: number, dy: number) {
+    if (!gameOver) {
+        if (isValidMove(currentTetromino, currentRow + dy, currentCol + dx)) {
+            currentRow += dy;
+            currentCol += dx;
+        }
+    }
+}
+
+// テトロミノの落下
+function dropTetromino() {
+    if (!gameOver) {
+        if (isValidMove(currentTetromino, currentRow + 1, currentCol)) {
+            currentRow++;
+        } else {
+            placeTetromino();
+            generateRandomTetromino();
+        }
+    }
+}
+
+// テトロミノをボードに配置
+function placeTetromino() {
+    for (let row = 0; row < currentTetromino.length; row++) {
+        for (let col = 0; col < currentTetromino[row].length; col++) {
+            if (currentTetromino[row][col]) {
+                const boardRow = row + currentRow;
+                const boardCol = col + currentCol;
+                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1;
+            }
+        }
+    }
+
+    clearLines();
+}
+
+// ラインのクリアとスコア計算
+function clearLines() {
+    for (let row = boardHeight - 1; row >= 0; row--) {
+        if (board[row].every(cell => cell !== 0)) {
+            board.splice(row, 1);
+            board.unshift(Array(boardWidth).fill(0));
+            score += 100;
+        }
+    }
+}
+
+// 移動が有効かどうかをチェック
+function isValidMove(tetromino: number[][], r: number, c: number) {
+    for (let row = 0; row < tetromino.length; row++) {
+        for (let col = 0; col < tetromino[row].length; col++) {
+            if (tetromino[row][col]) {
+                const boardRow = r + row;
+                const boardCol = c + col;
+
+                if (
+                    boardRow < 0 ||
+                    boardRow >= boardHeight ||
+                    boardCol < 0 ||
+                    boardCol >= boardWidth ||
+                    board[boardRow][boardCol] !== 0
+                ) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
 
 // ゲームのループ
 let lastTime = 0;
@@ -237,6 +307,20 @@ function gameLoop(currentTime: number) {
     // ゲームループを再帰呼び出し
     requestAnimationFrame(gameLoop);
 }
+// キーボード入力の処理
+document.addEventListener("keydown", (e) => {
+    if (!gameOver) {
+        if (e.key === "ArrowLeft") {
+            moveTetromino(-1, 0); // 左に移動
+        } else if (e.key === "ArrowRight") {
+            moveTetromino(1, 0); // 右に移動
+        } else if (e.key === "ArrowDown") {
+            dropTetromino(); // 落下
+        } else if (e.key === "ArrowUp") {
+            rotateTetromino(); // 回転
+        }
+    }
+});
 
 // ゲームを開始
 initializeCanvas();
