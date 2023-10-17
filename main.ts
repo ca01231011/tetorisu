@@ -25,6 +25,7 @@ const tetrominoShapes = [
     [[1, 0, 1], [1, 1, 1], [1, 0, 1,]],  //H
     [[1, 0, 1], [0, 1, 0], [1, 0, 1]],  //X
     [[1, 0], [0, 1]], // にますななめ
+    [[1, 0, 0], [1, 1, 0], [0, 1, 1]], //よくわからん形
 ]
 
 let canvas: HTMLCanvasElement;
@@ -236,7 +237,7 @@ function placeTetromino() {
             if (currentTetromino[row][col]) {
                 const boardRow = row + currentRow;
                 const boardCol = col + currentCol;
-                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1.1;
+                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1;
             }
         }
     }
