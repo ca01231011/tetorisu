@@ -20,7 +20,11 @@ const tetrominoShapes = [
     [[1, 1, 1], [1, 0, 0], [1, 1, 1]],   //コ
     [[1]],   //１マス
     [[1], [1]],   //２マス
-    [[1], [1], [1]]   //３マス
+    [[1], [1], [1]],   //３マス
+    [[1, 1, 1], [1, 1, 1], [1, 1, 1]],  //3*3
+    [[1, 0, 1], [1, 1, 1], [1, 0, 1,]],  //H
+    [[1, 0, 1], [0, 1, 0], [1, 0, 1]],  //X
+    [[1, 0], [0, 1]], // にますななめ
 ]
 
 let canvas: HTMLCanvasElement;
@@ -198,7 +202,7 @@ function canRotate(tetromino: number[][], row: number, col: number) {
 // スコアの表示
 function drawScore() {
     ctx.fillStyle = "#000";
-    ctx.font = "24px Arial";
+    ctx.font = "24px Cambria, Cochin, Georgia, Times, 'Times New Roman', serif";
     ctx.textAlign = "right"; // 右寄せに設定
     ctx.fillText("Score: " + score, canvasWidth - 20, 30);
 }
@@ -232,7 +236,7 @@ function placeTetromino() {
             if (currentTetromino[row][col]) {
                 const boardRow = row + currentRow;
                 const boardCol = col + currentCol;
-                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1;
+                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1.1;
             }
         }
     }
@@ -320,6 +324,17 @@ document.addEventListener("keydown", (e) => {
             rotateTetromino(); // 回転
         }
     }
+});
+// リトライボタン要素を生成
+const retryButton = document.getElementById("retryButton") as HTMLButtonElement;
+// リトライボタンのクリックイベントを処理
+retryButton.addEventListener("click", () => {
+    // ゲームを再初期化
+    initializeGame();
+    // ゲームオーバーフラグをリセット
+    gameOver = false;
+    // ゲームループを再開
+    requestAnimationFrame(gameLoop);
 });
 
 // ゲームを開始

@@ -4,9 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris</title>
+    <style>
+        #retryButton {
+            position: absolute; 
+            left: 500px; 
+            top: 30px; 
+            width: 70px;
+            height: 40px;
+            font-size: 20px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color:rgb(71, 102, 0);
+            color: #fff;
+        }
+        h1 {
+            position: absolute; 
+            left: 300px; 
+            top: 50px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+    </style>
 </head>
 <body>
     <canvas id="canvas" width="360" height="690"></canvas>
+    <h1>↑ : 回転<br>→ : 右に移動<br>← : 左に移動<br>↓ : 落下</h1>
+    <button id="retryButton">Retry</button>
     <script src="main.js"></script>
 </body>
 </html>
