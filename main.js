@@ -25,7 +25,7 @@ var tetrominoShapes = [
     [[1, 0, 1], [1, 1, 1], [1, 0, 1,]],
     [[1, 0, 1], [0, 1, 0], [1, 0, 1]],
     [[1, 0], [0, 1]],
-    [[1, 0, 0], [1, 1, 0], [0, 1, 1]],
+    [[1, 0, 0], [1, 1, 0], [0, 1, 1]], //よくわからん形
 ];
 var canvas;
 var ctx;
@@ -207,7 +207,7 @@ function placeTetromino() {
             if (currentTetromino[row][col]) {
                 var boardRow = row + currentRow;
                 var boardCol = col + currentCol;
-                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1;
+                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1.1;
             }
         }
     }

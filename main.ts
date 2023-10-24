@@ -237,7 +237,7 @@ function placeTetromino() {
             if (currentTetromino[row][col]) {
                 const boardRow = row + currentRow;
                 const boardCol = col + currentCol;
-                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1;
+                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1.1;
             }
         }
     }
