@@ -7,8 +7,8 @@
     <style>
         #retryButton {
             position: absolute; 
-            left: 500px; 
-            top: 30px; 
+            left: 400px; 
+            top: 20px; 
             width: 70px;
             height: 40px;
             font-size: 20px;
@@ -22,12 +22,24 @@
             top: 50px;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
+        #clock {
+            font-size: 2em;
+            position: absolute;
+            right: 300px;
+            top: 0px; 
+            margin-top: 50px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: grey;
+            border: solid 3px gray;
+        }
     </style>
 </head>
 <body>
-    <canvas id="canvas" width="360" height="690"></canvas>
+    <canvas id="canvas" width="360" height="600"></canvas>
     <h1>↑ : 回転<br>→ : 右に移動<br>← : 左に移動<br>↓ : 落下</h1>
     <button id="retryButton">Retry</button>
     <script src="main.js"></script>
+    <div id="clock"></div>
+    <script src="clock.js"></script>
 </body>
 </html>

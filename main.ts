@@ -1,11 +1,12 @@
 const canvasWidth = 360;
-const canvasHeight = 690;
+const canvasHeight = 600;
 const blockSize = 30;
 const boardWidth = canvasWidth / blockSize; //ボードの横幅
 const boardHeight = canvasHeight / blockSize; //ボードの縦幅
 //ブロックの色を指定
 const tetrominoColors = [
-    "#00008b", "#4682b4", "#4169e1", "#191970", "#1e90ff", "#6495ed", "#00dfff", "#87cefa", "#afeeee", "#00ced1", "#20b2aa", "#b0e4de", "#87ceeb", "#5f9ea0", "#00ffff", "#0000ff"
+    // "#00008b", "#4682b4", "#4169e1", "#191970", "#1e90ff", "#6495ed", "#00dfff", "#87cefa", "#afeeee", "#00ced1", "#20b2aa", "#b0e4de", "#87ceeb", "#5f9ea0", "#00ffff", "#0000ff"
+    "#696969"
 ]
 //ブロックの形を指定
 const tetrominoShapes = [
@@ -237,7 +238,7 @@ function placeTetromino() {
             if (currentTetromino[row][col]) {
                 const boardRow = row + currentRow;
                 const boardCol = col + currentCol;
-                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1.1;
+                board[boardRow][boardCol] = tetrominoColors.indexOf(currentColor) + 1;
             }
         }
     }
