@@ -38,7 +38,7 @@ let currentRow: number;
 let currentCol: number;
 let score: number;
 let gameOver: boolean;
-let blockFallInterval: number = 400; // ブロックが自動で落ちる間隔 (ミリ秒)
+let blockFallInterval: number = 600; // ブロックが自動で落ちる間隔 (ミリ秒)
 
 function initializeCanvas() {
     canvas = document.getElementById("canvas") as HTMLCanvasElement;
@@ -96,8 +96,20 @@ function drawBoard() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // ボードの外側の枠を描画
+    ctx.lineWidth = 4; // ボーダー線の太さを設定
     ctx.strokeStyle = "#000";
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+    // 縦線を描画
+    ctx.lineWidth = 0.5;
+    for (let col = 1; col < boardWidth; col++) {
+        const x = col * blockSize;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+    }
+
 
     for (let row = 0; row < boardHeight; row++) {
         for (let col = 0; col < boardWidth; col++) {

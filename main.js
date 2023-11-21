@@ -37,7 +37,7 @@ var currentRow;
 var currentCol;
 var score;
 var gameOver;
-var blockFallInterval = 400; // ブロックが自動で落ちる間隔 (ミリ秒)
+var blockFallInterval = 600; // ブロックが自動で落ちる間隔 (ミリ秒)
 function initializeCanvas() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
@@ -85,8 +85,18 @@ function generateRandomTetromino() {
 function drawBoard() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // ボードの外側の枠を描画
+    ctx.lineWidth = 4; // ボーダー線の太さを設定
     ctx.strokeStyle = "#000";
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    // 縦線を描画
+    ctx.lineWidth = 0.5;
+    for (var col = 1; col < boardWidth; col++) {
+        var x = col * blockSize;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+    }
     for (var row = 0; row < boardHeight; row++) {
         for (var col = 0; col < boardWidth; col++) {
             var cell = board[row][col];
