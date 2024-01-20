@@ -161,7 +161,7 @@ function showGameOver() {
 // ゲームオーバー条件のチェック
 function checkGameOver() {
     for (let col = 0; col < boardWidth; col++) {
-        if (board[0][col] !== 0) {
+        if (board[0][col] !== 0 ) {
             gameOver = true;
             showGameOver();
             return;
@@ -341,8 +341,16 @@ document.addEventListener("keydown", (e) => {
 });
 // リトライボタン要素を生成
 const retryButton = document.getElementById("retryButton") as HTMLButtonElement;
+//最大スコア
+let maxScore: number = 0;
+let scoreElement = document.getElementById("maxScore");
+
 // リトライボタンのクリックイベントを処理
 retryButton.addEventListener("click", () => {
+    if(maxScore < score) {
+        maxScore = score;
+        scoreElement.innerHTML = maxScore.toString()
+    }
     // ゲームを再初期化
     initializeGame();
     // ゲームオーバーフラグをリセット

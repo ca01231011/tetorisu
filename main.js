@@ -297,8 +297,14 @@ document.addEventListener("keydown", function (e) {
 });
 // リトライボタン要素を生成
 var retryButton = document.getElementById("retryButton");
+var maxScore = 0;
+var scoreElement = document.getElementById("maxScore");
 // リトライボタンのクリックイベントを処理
 retryButton.addEventListener("click", function () {
+    if (maxScore < score) {
+        maxScore = score;
+        scoreElement.innerHTML = maxScore.toString();
+    }
     // ゲームを再初期化
     initializeGame();
     // ゲームオーバーフラグをリセット
