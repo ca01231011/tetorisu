@@ -4,43 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris</title>
-    <style>
-        #retryButton {
-            position: absolute; 
-            left: 400px; 
-            top: 20px; 
-            width: 70px;
-            height: 40px;
-            font-size: 20px;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            background-color:rgb(71, 102, 0);
-            color: #fff;
-        }
-        h1 {
-            position: absolute; 
-            left: 300px; 
-            top: 50px;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        }
-        #clock {
-            font-size: 2em;
-            position: absolute;
-            right: 300px;
-            top: 0px; 
-            margin-top: 50px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            color: grey;
-            border: solid 3px gray;
-        }
-    </style>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <canvas id="canvas" width="360" height="600"></canvas>
     <h1>↑ : 回転<br>→ : 右に移動<br>← : 左に移動<br>↓ : 落下</h1>
-    <dd id="maxScore">0</dd>
+    <h2 id="maxScore">最大スコア: 0</h2>
     <button id="retryButton">Retry</button>
-    <script src="main.js"></script>
     <div id="clock"></div>
+
+    <script src="main.js"></script>
     <script src="clock.js"></script>
 </body>
 </html>

@@ -297,13 +297,14 @@ document.addEventListener("keydown", function (e) {
 });
 // リトライボタン要素を生成
 var retryButton = document.getElementById("retryButton");
+//最大スコア
 var maxScore = 0;
 var scoreElement = document.getElementById("maxScore");
 // リトライボタンのクリックイベントを処理
 retryButton.addEventListener("click", function () {
     if (maxScore < score) {
         maxScore = score;
-        scoreElement.innerHTML = maxScore.toString();
+        scoreElement.innerHTML = "最大スコア: " + maxScore.toString();
     }
     // ゲームを再初期化
     initializeGame();

@@ -349,7 +349,7 @@ let scoreElement = document.getElementById("maxScore");
 retryButton.addEventListener("click", () => {
     if(maxScore < score) {
         maxScore = score;
-        scoreElement.innerHTML = maxScore.toString()
+        scoreElement.innerHTML = "最大スコア: " + maxScore.toString()
     }
     // ゲームを再初期化
     initializeGame();
